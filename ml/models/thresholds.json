@@ -1,0 +1,6 @@
+{
+  "confidence_threshold": 0.6,
+  "margin_threshold": 0.15,
+  "source": "default (config.py) \u2014 recalibrated by evaluate.py on the validation set",
+  "calibrated": false
+}

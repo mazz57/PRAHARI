@@ -1,0 +1,47 @@
+# v0 sandbox internal files
+__v0_runtime_loader.js
+__v0_devtools.tsx
+__v0_jsx-dev-runtime.ts
+.snowflake/
+.v0-trash/
+.vercel/
+
+# Environment variables
+.env*.local
+
+# Common ignores
+node_modules
+.next/
+.DS_Store
+### ML pipeline ###
+
+# Datasets — large/license-bound, never commit
+ml/data/raw/*
+ml/data/processed/*
+!ml/data/raw/.gitkeep
+!ml/data/processed/.gitkeep
+
+# Model binaries — never commit
+ml/models/**/*.onnx
+ml/models/**/*.onnx.data
+ml/models/**/*.pth
+ml/models/**/*.pt
+ml/models/**/*.ckpt
+
+# Runtime/model metadata — commit
+!ml/models/**/class_names.json
+!ml/models/**/evaluation.json
+!ml/models/**/thresholds.json
+
+# Python caches
+ml/**/__pycache__/
+ml/**/*.pyc
+
+# ML reports / test fixtures
+ml/reports/
+ml/tests/fixtures/
+
+# Temporary files
+*.tsbuildinfo
+tsc_out.txt
+temp_plant_village/

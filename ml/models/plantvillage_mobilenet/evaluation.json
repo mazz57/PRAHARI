@@ -1,0 +1,67 @@
+{
+  "model_name": "plantvillage_mobilenet",
+  "model_path": "D:\\resource\\coding\\hackathon\\old_prj\\ml\\models\\plantvillage_mobilenet\\model.onnx",
+  "test_set": "D:\\resource\\coding\\hackathon\\old_prj\\ml\\data\\processed\\test",
+  "test_image_count": 646,
+  "correct": 644,
+  "incorrect": 2,
+  "accuracy": 0.996904,
+  "macro_precision": 1.0,
+  "macro_recall": 0.997778,
+  "macro_f1": 0.998885,
+  "per_class": {
+    "Potato___healthy": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 46
+    },
+    "Potato___Early_blight": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "support": 300
+    },
+    "Potato___Late_blight": {
+      "precision": 1.0,
+      "recall": 0.993333,
+      "f1": 0.996656,
+      "support": 300
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "Potato___healthy",
+      "Potato___Early_blight",
+      "Potato___Late_blight"
+    ],
+    "matrix": [
+      [
+        46,
+        0,
+        0
+      ],
+      [
+        0,
+        300,
+        0
+      ],
+      [
+        0,
+        0,
+        298
+      ]
+    ]
+  },
+  "confidence_stats": {
+    "mean": 0.900953,
+    "min": 0.423216,
+    "max": 0.975452,
+    "below_60pct": 4,
+    "below_80pct": 24
+  },
+  "prediction_distribution": {
+    "potato_predictions": 644,
+    "non_potato_predictions": 2
+  }
+}

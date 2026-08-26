@@ -1,0 +1,21 @@
+{
+  "classes": [
+    "healthy",
+    "early_blight",
+    "late_blight"
+  ],
+  "num_classes": 3,
+  "image_size": 224,
+  "normalize": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  }
+}
