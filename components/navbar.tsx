@@ -33,6 +33,9 @@ export function Navbar() {
             <Link href="/check-crop" className="text-sm text-foreground hover:text-primary transition-colors">
               Check my crop
             </Link>
+            <Link href="/mandi" className="text-sm text-foreground hover:text-primary transition-colors">
+              Mandi
+            </Link>
             <LanguageSwitcher />
           </div>
 
@@ -61,6 +64,9 @@ export function Navbar() {
             </Link>
             <Link href="/check-crop" className="block px-4 py-2 text-sm text-foreground hover:bg-muted rounded-md">
               Check my crop
+            </Link>
+            <Link href="/mandi" className="block px-4 py-2 text-sm text-foreground hover:bg-muted rounded-md">
+              Mandi
             </Link>
           </div>
         )}

@@ -47,9 +47,9 @@ export function Sidebar() {
           </Button>
         </Link>
 
-        <Link href="/mandi-prices">
+        <Link href="/mandi">
           <Button
-            variant={isActive('/mandi-prices') ? 'default' : 'ghost'}
+            variant={isActive('/mandi') ? 'default' : 'ghost'}
             className="w-full justify-start gap-3"
           >
             <TrendingUp className="w-4 h-4" />
