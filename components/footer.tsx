@@ -13,7 +13,8 @@ export function Footer() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <Leaf className="w-5 h-5 text-primary" />
-              <span className="font-bold text-foreground">AgroAI</span>
+              <span className="font-black tracking-[0.16em] text-foreground">PRAVAAH</span>
+              <span className="text-[10px] uppercase tracking-[0.14em] text-muted-foreground">Agricultural Intelligence</span>
             </div>
             <p className="text-sm text-muted-foreground">
               AI-powered advisory for modern farming
@@ -83,7 +84,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-border pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-muted-foreground">
-          <p>&copy; {currentYear} AgroAI. All rights reserved.</p>
+          <p>&copy; {currentYear} PRAVAAH. All rights reserved.</p>
           <p>Made with care for farmers worldwide</p>
         </div>
       </div>

@@ -166,7 +166,7 @@ export function CheckCropView() {
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-sm text-primary font-medium">
           <Stethoscope className="h-4 w-4" />
-          <span>PRAHARI Crop Diagnosis</span>
+          <span>PRAVAAH Crop Diagnosis</span>
         </div>
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
           Check Potato Leaf Health

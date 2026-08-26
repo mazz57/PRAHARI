@@ -150,7 +150,7 @@ export function StatsSection() {
 
 export function TrustedBySection() {
   const testimonials = [
-    { name: 'Rajesh Kumar', farm: 'Haryana', text: 'Increased my wheat yield by 40% in just one season. AgroAI is a game-changer!' },
+    { name: 'Rajesh Kumar', farm: 'Haryana', text: 'Increased my wheat yield by 40% in just one season. PRAVAAH is a game-changer!' },
     { name: 'Priya Sharma', farm: 'Punjab', text: 'The disease detection saved my rice crop from early blight. Worth every rupee.' },
     { name: 'Vikram Singh', farm: 'Madhya Pradesh', text: 'Real-time mandi prices help me get the best market rates for my produce.' },
   ]
@@ -169,7 +169,7 @@ export function TrustedBySection() {
             Trusted by Thousands of Farmers
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real success stories from farmers across India using AgroAI to transform their farming
+            Real success stories from farmers across India using PRAVAAH to transform their farming
           </p>
         </motion.div>
 

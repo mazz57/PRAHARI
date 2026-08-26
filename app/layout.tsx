@@ -3,8 +3,8 @@ import '../styles/globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 
 export const metadata: Metadata = {
-  title: 'AgroAI',
-  description: 'AI-powered advisory for modern farming',
+  title: 'PRAVAAH | Agricultural Intelligence',
+  description: 'PRAVAAH agricultural intelligence for healthier crops and better farm decisions',
 }
 
 export default function RootLayout({

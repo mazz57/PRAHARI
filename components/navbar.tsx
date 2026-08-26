@@ -14,9 +14,14 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-            <Leaf className="w-6 h-6 text-primary" />
-            <span className="text-xl font-bold text-foreground hidden sm:inline">AgroAI</span>
+          <Link href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-sm">
+              <Leaf className="h-5 w-5" />
+            </span>
+            <span className="block leading-none">
+              <span className="block text-base font-black tracking-[0.16em] text-foreground sm:text-lg sm:tracking-[0.18em]">PRAVAAH</span>
+              <span className="mt-1 block text-[8px] font-medium uppercase tracking-[0.12em] text-muted-foreground sm:text-[9px] sm:tracking-[0.16em]">Agricultural Intelligence</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
