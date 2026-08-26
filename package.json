@@ -47,6 +47,7 @@
     "framer-motion": "^12.38.0",
     "input-otp": "1.4.2",
     "lucide-react": "^0.564.0",
+    "maplibre-gl": "^4.1.0",
     "next": "16.2.6",
     "next-themes": "^0.4.6",
     "onnxruntime-node": "^1.29.0",
@@ -65,6 +66,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.0.0",
     "@tailwindcss/postcss": "^4.2.0",
+    "@types/maplibre-gl": "^1.13.2",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",

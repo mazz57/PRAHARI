@@ -1,13 +1,12 @@
-'use client'
-
-import { bandToSemantic } from '@/lib/disease-risk/band'
-import type { FieldRiskResult, DistrictInfo } from '@/lib/disease-risk/api-types'
+'use client';
+import { useEffect, useRef } from 'react';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { bandToSemantic } from '@/lib/disease-risk/band';
 
 /**
- * Minimal field map — an SVG scatter of the district's fields, coloured by band. Deliberately not a
- * tiled web map: it needs no API key, no network tiles, and no extra dependency, which keeps the
- * prototype honest and self-contained. Positions are the fields' real coordinates, projected to the
- * view box; it is a schematic, not a survey.
+ * MapLibre field map – displays field points colored by risk band.
+ * No district centre marker is added (per user request).
  */
 export function FieldMap({
   fields,
@@ -15,63 +14,100 @@ export function FieldMap({
   selectedId,
   onSelect,
 }: {
-  fields: FieldRiskResult[]
-  district: DistrictInfo
-  selectedId?: string | null
-  onSelect?: (id: string) => void
+  fields: import('@/lib/disease-risk/api-types').FieldRiskResult[];
+  district: import('@/lib/disease-risk/api-types').DistrictInfo;
+  selectedId?: string | null;
+  onSelect?: (id: string) => void;
 }) {
-  const pts = fields.map((f) => ({ lat: f.coords.lat, lon: f.coords.lon }))
-  pts.push({ lat: district.center.lat, lon: district.center.lon })
-  const lats = pts.map((p) => p.lat)
-  const lons = pts.map((p) => p.lon)
-  const pad = 0.03
-  const minLat = Math.min(...lats) - pad
-  const maxLat = Math.max(...lats) + pad
-  const minLon = Math.min(...lons) - pad
-  const maxLon = Math.max(...lons) + pad
-  const W = 100
-  const H = 100
-  // Latitude increases upward, so invert Y.
-  const x = (lon: number) => ((lon - minLon) / (maxLon - minLon)) * W
-  const y = (lat: number) => H - ((lat - minLat) / (maxLat - minLat)) * H
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<maplibregl.Map | null>(null);
+
+  // Build GeoJSON source from fields
+  const geojson = {
+    type: 'FeatureCollection' as const,
+    features: fields.map((f) => {
+      const semantic = bandToSemantic(f.band);
+      return {
+        type: 'Feature' as const,
+        geometry: {
+          type: 'Point' as const,
+          coordinates: [f.coords.lon, f.coords.lat],
+        },
+        properties: {
+          fieldId: f.fieldId,
+          icon: semantic.icon,
+          color: semantic.color,
+          onColor: semantic.onColor,
+        },
+      };
+    }),
+  };
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const map = new maplibregl.Map({
+      container: containerRef.current,
+      style: 'https://tiles.openfreemap.org/styles/positron',
+      center: [district.center.lon, district.center.lat],
+      zoom: 13,
+    });
+    mapRef.current = map;
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }));
+    map.on('load', () => {
+      map.addSource('fields', {
+        type: 'geojson',
+        data: geojson,
+      });
+      map.addLayer({
+        id: 'field-circles',
+        type: 'circle',
+        source: 'fields',
+        paint: {
+          'circle-radius': ['case', ['==', ['get', 'fieldId'], selectedId ?? ''], 8, 6],
+          'circle-color': ['get', 'color'],
+          'circle-stroke-color': ['case', ['==', ['get', 'fieldId'], selectedId ?? ''], 'var(--foreground)', 'white'],
+          'circle-stroke-width': ['case', ['==', ['get', 'fieldId'], selectedId ?? ''], 2, 1],
+        },
+      });
+      map.addLayer({
+        id: 'field-labels',
+        type: 'symbol',
+        source: 'fields',
+        layout: {
+          'text-field': ['get', 'icon'],
+          'text-size': 20,
+          'text-anchor': 'top',
+          'text-offset': [0, 0.6],
+        },
+        paint: {
+          'text-color': ['get', 'onColor'],
+        },
+      });
+    });
+    if (onSelect) {
+      map.on('click', 'field-circles', (e: maplibregl.MapLayerMouseEvent) => {
+        const features = e.features;
+        if (!features || !features[0]) return;
+        const fieldId = (features[0].properties?.fieldId as unknown) as string;
+        onSelect(fieldId);
+      });
+    }
+    const handleResize = () => {
+      map.resize();
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      map.remove();
+      mapRef.current = null;
+    };
+  }, [containerRef, geojson, district.center.lat, district.center.lon, selectedId, onSelect]);
 
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} className="h-full w-full rounded-lg border border-border bg-muted/30" role="img" aria-label="Field map">
-      {/* faint grid */}
-      {[20, 40, 60, 80].map((g) => (
-        <g key={g} stroke="var(--border)" strokeWidth={0.2}>
-          <line x1={g} y1={0} x2={g} y2={H} />
-          <line x1={0} y1={g} x2={W} y2={g} />
-        </g>
-      ))}
-      {/* district centre */}
-      <circle cx={x(district.center.lon)} cy={y(district.center.lat)} r={1.4} fill="var(--muted-foreground)" />
-      <text x={x(district.center.lon) + 2} y={y(district.center.lat) - 2} fontSize={3} fill="var(--muted-foreground)">
-        {district.nameEn}
-      </text>
-      {/* fields */}
-      {fields.map((f) => {
-        const s = bandToSemantic(f.band)
-        const selected = selectedId === f.fieldId
-        return (
-          <g key={f.fieldId} onClick={() => onSelect?.(f.fieldId)} style={{ cursor: onSelect ? 'pointer' : 'default' }}>
-            <circle
-              cx={x(f.coords.lon)}
-              cy={y(f.coords.lat)}
-              r={selected ? 4.2 : 3.4}
-              fill={s.color}
-              stroke={selected ? 'var(--foreground)' : 'white'}
-              strokeWidth={selected ? 1 : 0.6}
-            />
-            <text x={x(f.coords.lon)} y={y(f.coords.lat) + 0.9} fontSize={3.4} textAnchor="middle" fill={s.onColor} fontWeight="bold">
-              {s.icon}
-            </text>
-            <text x={x(f.coords.lon)} y={y(f.coords.lat) + 7} fontSize={2.8} textAnchor="middle" fill="var(--foreground)">
-              {f.fieldName}
-            </text>
-          </g>
-        )
-      })}
-    </svg>
-  )
+    <div
+      ref={containerRef}
+      className="h-full w-full rounded-lg border border-border bg-muted/30"
+      style={{ minHeight: '300px' }}
+    />
+  );
 }
