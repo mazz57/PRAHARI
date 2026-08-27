@@ -1,7 +1,7 @@
 import { MandiView } from '@/components/mandi/mandi-view'
 
 export const metadata = {
-  title: 'Mandi — PRAVAAH',
+  title: 'Mandi — PRAHARI',
   description:
     'Daily government agricultural mandi prices and arrivals sourced from data.gov.in and AGMARKNET.',
 }

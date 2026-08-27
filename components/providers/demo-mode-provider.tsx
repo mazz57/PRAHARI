@@ -11,8 +11,8 @@ import { createContext, useContext, useEffect, useState, type ReactNode } from '
 export type Scenario = 'blight_outbreak' | 'borderline_watch' | 'dry_spell'
 const SCENARIOS: Scenario[] = ['blight_outbreak', 'borderline_watch', 'dry_spell']
 
-const DEMO_KEY = 'pravaah.demo'
-const SCENARIO_KEY = 'pravaah.scenario'
+const DEMO_KEY = 'prahari.demo'
+const SCENARIO_KEY = 'prahari.scenario'
 
 interface DemoModeContextValue {
   demo: boolean

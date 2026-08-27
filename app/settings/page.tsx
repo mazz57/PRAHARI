@@ -1,7 +1,7 @@
 import { SettingsView } from '@/components/settings/settings-view'
 
 export const metadata = {
-  title: 'Settings — PRAVAAH',
+  title: 'Settings — PRAHARI',
   description: 'Language, demo mode, and data sources.',
 }
 

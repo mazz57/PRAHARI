@@ -55,7 +55,7 @@ export interface UiStrings {
 
 export const UI: Record<Lang, UiStrings> = {
   en: {
-    appName: 'PRAVAAH',
+    appName: 'PRAHARI',
     fieldRiskTitle: 'Field Risk — early warning',
     fieldRiskSubtitle: 'Could disease become a problem soon? Weather + crop, checked against the Hutton and Wallin science.',
     predictName: 'Field Risk',
@@ -102,7 +102,7 @@ export const UI: Record<Lang, UiStrings> = {
     listen: 'Listen',
   },
   hi: {
-    appName: 'प्रवाह',
+    appName: 'प्रहरी',
     fieldRiskTitle: 'खेत का जोखिम — पहले से चेतावनी',
     fieldRiskSubtitle: 'क्या जल्द ही बीमारी बढ़ सकती है? मौसम और फसल को हटन और वालिन विज्ञान से जाँचा गया।',
     predictName: 'खेत का जोखिम',
@@ -149,7 +149,7 @@ export const UI: Record<Lang, UiStrings> = {
     listen: 'सुनें',
   },
   kn: {
-    appName: 'ಪ್ರವಾಹ',
+    appName: 'ಪ್ರಹರಿ',
     fieldRiskTitle: 'ಹೊಲದ ಅಪಾಯ — ಮುಂಚಿನ ಎಚ್ಚರಿಕೆ',
     fieldRiskSubtitle: 'ಶೀಘ್ರದಲ್ಲೇ ರೋಗ ಸಮಸ್ಯೆಯಾಗಬಹುದೇ? ಹವಾಮಾನ ಮತ್ತು ಬೆಳೆಯನ್ನು ಹಟನ್ ಮತ್ತು ವಾಲಿನ್ ವಿಜ್ಞಾನದಿಂದ ಪರಿಶೀಲಿಸಲಾಗಿದೆ.',
     predictName: 'ಹೊಲದ ಅಪಾಯ',

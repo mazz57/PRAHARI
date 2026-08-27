@@ -1,7 +1,7 @@
 import { AlertsView } from '@/components/alerts/alerts-view'
 
 export const metadata = {
-  title: 'Alerts — PRAVAAH',
+  title: 'Alerts — PRAHARI',
   description: 'Your fields’ disease-risk alerts, sorted by urgency.',
 }
 

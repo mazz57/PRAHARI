@@ -8,7 +8,7 @@ import type { Lang } from '@/lib/i18n/advisory-templates'
  * choice is consistent everywhere and flows into every /api/... call as ?lang=. Persisted to
  * localStorage; the backend contract (en|hi|kn) is unchanged.
  */
-const STORAGE_KEY = 'pravaah.lang'
+const STORAGE_KEY = 'prahari.lang'
 const isLang = (v: unknown): v is Lang => v === 'en' || v === 'hi' || v === 'kn'
 
 interface LanguageContextValue {

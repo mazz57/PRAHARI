@@ -11,7 +11,7 @@ import { UI } from '@/lib/i18n/ui-strings'
 import { APP_STRINGS } from '@/lib/i18n/app-strings'
 
 /**
- * Desktop sidebar (lg+). PRAVAAH branding, the 7 primary areas with an obvious active state, and a
+ * Desktop sidebar (lg+). PRAHARI branding, the 7 primary areas with an obvious active state, and a
  * clearly-separated secondary section for Settings, Demo/Test mode, and Language.
  */
 export function Sidebar() {

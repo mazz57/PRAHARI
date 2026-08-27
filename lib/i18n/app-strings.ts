@@ -1,10 +1,10 @@
 /**
- * App-level UI copy for the PRAVAAH shell and the pages that are not covered by ui-strings.ts
+ * App-level UI copy for the PRAHARI shell and the pages that are not covered by ui-strings.ts
  * (which stays focused on the Field Risk / detect chrome). English is primary; Hindi and Kannada
  * are provided for the farmer-facing surfaces. [VERIFY-kn] Kannada is prototype-quality — confirm
  * with a native speaker before production.
  *
- * PRAVAAH is the product name shown to users. Internal identifiers (PRAHARI, model IDs, API routes)
+ * PRAHARI is the product name shown to users. Internal identifiers (PRAHARI, model IDs, API routes)
  * are intentionally NOT changed.
  */
 import type { Lang } from '@/lib/i18n/advisory-templates'
@@ -216,8 +216,8 @@ export const APP_STRINGS: Record<Lang, AppStrings> = {
     setLanguageBody: 'Choose the language used across the app.',
     setDemo: 'Demo / Test mode',
     setDemoBody: 'Show saved weather scenarios instead of the live forecast. Useful for demos in dry weather when live risk is low.',
-    setAbout: 'About PRAVAAH',
-    setAboutBody: 'PRAVAAH gives small farmers an early warning for crop disease from weather, an image check for leaves, and honest market prices — in their own language.',
+    setAbout: 'About PRAHARI',
+    setAboutBody: 'PRAHARI gives small farmers an early warning for crop disease from weather, an image check for leaves, and honest market prices — in their own language.',
     setDataSources: 'Data sources',
     setDataSourcesBody: 'Weather: Open-Meteo. Market prices: data.gov.in / AGMARKNET. Leaf diagnosis: a PlantVillage-trained image classifier. Field risk uses the Hutton criterion and Wallin severity.',
 
@@ -303,8 +303,8 @@ export const APP_STRINGS: Record<Lang, AppStrings> = {
     setLanguageBody: 'ऐप में उपयोग होने वाली भाषा चुनें।',
     setDemo: 'डेमो / टेस्ट मोड',
     setDemoBody: 'लाइव पूर्वानुमान के बजाय सहेजे हुए मौसम परिदृश्य दिखाएँ। सूखे मौसम में डेमो के लिए उपयोगी जब लाइव जोखिम कम हो।',
-    setAbout: 'PRAVAAH के बारे में',
-    setAboutBody: 'PRAVAAH छोटे किसानों को मौसम से फसल रोग की पूर्व-चेतावनी, पत्तों की तस्वीर जाँच, और ईमानदार मंडी भाव देता है — उनकी अपनी भाषा में।',
+    setAbout: 'PRAHARI के बारे में',
+    setAboutBody: 'PRAHARI छोटे किसानों को मौसम से फसल रोग की पूर्व-चेतावनी, पत्तों की तस्वीर जाँच, और ईमानदार मंडी भाव देता है — उनकी अपनी भाषा में।',
     setDataSources: 'डेटा स्रोत',
     setDataSourcesBody: 'मौसम: Open-Meteo। मंडी भाव: data.gov.in / AGMARKNET। पत्ता पहचान: PlantVillage पर प्रशिक्षित इमेज क्लासिफायर। खेत जोखिम हटन नियम और वालिन गंभीरता का उपयोग करता है।',
 
@@ -390,8 +390,8 @@ export const APP_STRINGS: Record<Lang, AppStrings> = {
     setLanguageBody: 'ಆ್ಯಪ್‌ನಲ್ಲಿ ಬಳಸುವ ಭಾಷೆಯನ್ನು ಆರಿಸಿ.',
     setDemo: 'ಡೆಮೋ / ಟೆಸ್ಟ್ ಮೋಡ್',
     setDemoBody: 'ನೇರ ಮುನ್ಸೂಚನೆಯ ಬದಲು ಉಳಿಸಿದ ಹವಾಮಾನ ಸನ್ನಿವೇಶಗಳನ್ನು ತೋರಿಸಿ. ಒಣ ಹವಾಮಾನದಲ್ಲಿ ಡೆಮೋಗೆ ಉಪಯುಕ್ತ.',
-    setAbout: 'PRAVAAH ಬಗ್ಗೆ',
-    setAboutBody: 'PRAVAAH ಸಣ್ಣ ರೈತರಿಗೆ ಹವಾಮಾನದಿಂದ ಬೆಳೆ ರೋಗದ ಮುಂಚಿನ ಎಚ್ಚರಿಕೆ, ಎಲೆಗಳ ಚಿತ್ರ ಪರಿಶೀಲನೆ, ಮತ್ತು ಪ್ರಾಮಾಣಿಕ ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳನ್ನು — ಅವರ ಸ್ವಂತ ಭಾಷೆಯಲ್ಲಿ ನೀಡುತ್ತದೆ.',
+    setAbout: 'PRAHARI ಬಗ್ಗೆ',
+    setAboutBody: 'PRAHARI ಸಣ್ಣ ರೈತರಿಗೆ ಹವಾಮಾನದಿಂದ ಬೆಳೆ ರೋಗದ ಮುಂಚಿನ ಎಚ್ಚರಿಕೆ, ಎಲೆಗಳ ಚಿತ್ರ ಪರಿಶೀಲನೆ, ಮತ್ತು ಪ್ರಾಮಾಣಿಕ ಮಾರುಕಟ್ಟೆ ಬೆಲೆಗಳನ್ನು — ಅವರ ಸ್ವಂತ ಭಾಷೆಯಲ್ಲಿ ನೀಡುತ್ತದೆ.',
     setDataSources: 'ಡೇಟಾ ಮೂಲಗಳು',
     setDataSourcesBody: 'ಹವಾಮಾನ: Open-Meteo. ಮಂಡಿ ಬೆಲೆ: data.gov.in / AGMARKNET. ಎಲೆ ಪತ್ತೆ: PlantVillage ತರಬೇತಿ ಪಡೆದ ಚಿತ್ರ ವರ್ಗೀಕಾರ. ಹೊಲ ಅಪಾಯ ಹಟನ್ ನಿಯಮ ಮತ್ತು ವಾಲಿನ್ ತೀವ್ರತೆ ಬಳಸುತ್ತದೆ.',
 

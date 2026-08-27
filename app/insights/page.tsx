@@ -1,7 +1,7 @@
 import { InsightsView } from '@/components/insights/insights-view'
 
 export const metadata = {
-  title: 'Insights — PRAVAAH',
+  title: 'Insights — PRAHARI',
   description: 'An analytical read on your fields from the current forecast — real numbers only.',
 }
 
