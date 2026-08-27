@@ -7,8 +7,8 @@ import { labelText } from '../labels'
 
 test('known classes map to friendly labels', () => {
   assert.equal(labelText('healthy'), 'Healthy')
-  assert.equal(labelText('early_blight'), 'Early blight')
-  assert.equal(labelText('late_blight'), 'Late blight')
+  assert.equal(labelText('early_blight'), 'Early Blight')
+  assert.equal(labelText('late_blight'), 'Late Blight')
 })
 
 test('unknown class falls back to de-underscored title case (never a raw token)', () => {

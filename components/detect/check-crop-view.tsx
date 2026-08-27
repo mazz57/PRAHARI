@@ -161,18 +161,20 @@ export function CheckCropView() {
   const guidance = result ? (AGRONOMIC_GUIDANCE[result.condition] ?? AGRONOMIC_GUIDANCE.uncertain) : null
 
   return (
-    <div className="mx-auto max-w-3xl space-y-6 px-4 py-8">
-      {/* Header */}
+    <div className="mx-auto max-w-3xl space-y-6">
+      {/* Header — plain language first; the model details live in the result, not the headline. */}
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-sm text-primary font-medium">
           <Stethoscope className="h-4 w-4" />
-          <span>PRAHARI Crop Diagnosis</span>
+          <span>Crop Health</span>
         </div>
         <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
-          Check Potato Leaf Health
+          Check a leaf for disease
         </h1>
         <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-          Upload a clear photograph of a potato leaf to inspect for disease symptoms (Healthy, Early Blight, Late Blight) using our validated AI classifier.
+          Take or upload a clear photo of a single potato leaf. You’ll get a plain-language result in
+          seconds — healthy, early blight, or late blight — and we’ll tell you honestly when a photo
+          isn’t clear enough to be sure.
         </p>
       </div>
 
@@ -401,7 +403,7 @@ export function CheckCropView() {
           <div className="flex items-start gap-2 border-t border-border pt-4 text-xs text-muted-foreground">
             <Stethoscope className="h-3.5 w-3.5 shrink-0 mt-0.5 text-primary" />
             <span>
-              Prahari AI provides assistive screening based on image recognition and does not replace official lab diagnostics. For critical decisions, consult your local Krishi Vigyan Kendra (KVK).
+              Crop Health provides assistive screening from a photo and does not replace official lab diagnostics. For critical decisions, consult your local Krishi Vigyan Kendra (KVK).
             </span>
           </div>
         </div>

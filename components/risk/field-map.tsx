@@ -8,6 +8,29 @@ import { bandToSemantic } from '@/lib/disease-risk/band';
  * MapLibre field map – displays field points colored by risk band.
  * No district centre marker is added (per user request).
  */
+
+/**
+ * Resolve any CSS color — including custom-property references like
+ * `var(--foreground)` and modern `oklch(...)` tokens — to a concrete color
+ * string that MapLibre's WebGL parser understands.
+ *
+ * MapLibre parses colors itself and cannot read CSS variables (they only
+ * resolve in the browser's DOM/CSS engine), so a raw `var(--foreground)` makes
+ * it throw "Could not parse color". We resolve the value via a hidden probe
+ * element whose computed `color` the browser always serialises to rgb().
+ */
+function resolveColor(value: string, fallback: string): string {
+  if (typeof document === 'undefined') return fallback;
+  const probe = document.createElement('span');
+  probe.style.color = fallback; // baseline; stays if `value` is invalid
+  probe.style.color = value;
+  probe.style.display = 'none';
+  document.body.appendChild(probe);
+  const computed = getComputedStyle(probe).color;
+  document.body.removeChild(probe);
+  return computed || fallback;
+}
+
 export function FieldMap({
   fields,
   district,
@@ -22,29 +45,31 @@ export function FieldMap({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
 
-  // Build GeoJSON source from fields
-  const geojson = {
-    type: 'FeatureCollection' as const,
-    features: fields.map((f) => {
-      const semantic = bandToSemantic(f.band);
-      return {
-        type: 'Feature' as const,
-        geometry: {
-          type: 'Point' as const,
-          coordinates: [f.coords.lon, f.coords.lat],
-        },
-        properties: {
-          fieldId: f.fieldId,
-          icon: semantic.icon,
-          color: semantic.color,
-          onColor: semantic.onColor,
-        },
-      };
-    }),
-  };
-
   useEffect(() => {
     if (!containerRef.current) return;
+
+    // Resolve all CSS tokens to concrete colors up front — MapLibre can't read var().
+    const strokeSelected = resolveColor('var(--foreground)', '#111111');
+    const geojson = {
+      type: 'FeatureCollection' as const,
+      features: fields.map((f) => {
+        const semantic = bandToSemantic(f.band);
+        return {
+          type: 'Feature' as const,
+          geometry: {
+            type: 'Point' as const,
+            coordinates: [f.coords.lon, f.coords.lat],
+          },
+          properties: {
+            fieldId: f.fieldId,
+            icon: semantic.icon,
+            color: resolveColor(semantic.color, '#16a34a'),
+            onColor: resolveColor(semantic.onColor, '#ffffff'),
+          },
+        };
+      }),
+    };
+
     const map = new maplibregl.Map({
       container: containerRef.current,
       style: 'https://tiles.openfreemap.org/styles/positron',
@@ -65,7 +90,7 @@ export function FieldMap({
         paint: {
           'circle-radius': ['case', ['==', ['get', 'fieldId'], selectedId ?? ''], 8, 6],
           'circle-color': ['get', 'color'],
-          'circle-stroke-color': ['case', ['==', ['get', 'fieldId'], selectedId ?? ''], 'var(--foreground)', 'white'],
+          'circle-stroke-color': ['case', ['==', ['get', 'fieldId'], selectedId ?? ''], strokeSelected, 'white'],
           'circle-stroke-width': ['case', ['==', ['get', 'fieldId'], selectedId ?? ''], 2, 1],
         },
       });
@@ -101,7 +126,7 @@ export function FieldMap({
       map.remove();
       mapRef.current = null;
     };
-  }, [containerRef, geojson, district.center.lat, district.center.lon, selectedId, onSelect]);
+  }, [fields, district.center.lat, district.center.lon, selectedId, onSelect]);
 
   return (
     <div
